@@ -19,6 +19,8 @@ public class PlayerInputJump : MonoBehaviour
     public Image m_ImageGage;
     [Header("オーディオソース")]
     public AudioSource m_AudioSource;
+
+    public float m_JUmpOKChargePoint = 0.25f;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -37,11 +39,20 @@ public class PlayerInputJump : MonoBehaviour
         }
         if (m_ImageGage)
         {
-            float Powers = m_JumpPower.x - m_JumpPower.y;
-            if (Powers < 0)
-                Powers = 0;
-            m_ImageGage.fillAmount = (1.0f / (m_JumpPower.z - m_JumpPower.y)) * Powers;
+            m_ImageGage.fillAmount = ChargePoint();
+            if (ChargePoint() > m_JUmpOKChargePoint)
+                m_ImageGage.color = Color.blue;
+            else
+                m_ImageGage.color = Color.red;
+
         }
+    }
+    public float ChargePoint()
+    {
+        float Powers = m_JumpPower.x - m_JumpPower.y;
+        if (Powers < 0)
+            Powers = 0;
+        return (1.0f / (m_JumpPower.z - m_JumpPower.y)) * Powers;
     }
     public void PlayerSeidInput()
     {
@@ -73,13 +84,16 @@ public class PlayerInputJump : MonoBehaviour
     }
     public void JumpUp()
     {
-        //ジャンプ
-        m_Rigidbody.AddForce(
-            (this.transform.up * m_JumpPower.x) +
-            (this.transform.right * Mathf.Max(
-                10.0f,
-                (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
-        m_EarthFlag = false;
+        if (ChargePoint() > m_JUmpOKChargePoint)
+        {
+            //ジャンプ
+            m_Rigidbody.AddForce(
+                (this.transform.up * m_JumpPower.x) +
+                (this.transform.right * Mathf.Max(
+                    10.0f,
+                    (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
+            m_EarthFlag = false;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
