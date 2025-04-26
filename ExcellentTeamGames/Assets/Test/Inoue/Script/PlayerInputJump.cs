@@ -17,9 +17,12 @@ public class PlayerInputJump : MonoBehaviour
     public bool m_PlayerSide;
     [Header("ジャンプパワーゲージ")]
     public Image m_ImageGage;
+    [Header("オーディオソース")]
+    public AudioSource m_AudioSource;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -78,7 +81,11 @@ public class PlayerInputJump : MonoBehaviour
                 (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
         m_EarthFlag = false;
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        m_AudioSource.Stop();
+        m_AudioSource.Play();
+    }
     /// <summary>
     /// 接地中
     /// </summary>
