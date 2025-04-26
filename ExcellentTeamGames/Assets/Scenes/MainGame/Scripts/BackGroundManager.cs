@@ -54,7 +54,7 @@ namespace MiyazakiScript
                 float spawnX = baseX + offset;
 
                 // Y座標やZ座標は適当に（例ではテーブルの高さと合わせる）
-                Vector3 spawnPos = new Vector3(spawnX, _table.transform.lossyScale.y - 0.05f, _table.transform.lossyScale.z / 2);
+                Vector3 spawnPos = new Vector3(spawnX, 0, _table.transform.lossyScale.z / 2);
 
                 var obj = Instantiate(_prefab, spawnPos, Quaternion.identity);
                 obj.transform.parent = transform;

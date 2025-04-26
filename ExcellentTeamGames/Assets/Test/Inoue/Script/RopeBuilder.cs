@@ -36,6 +36,9 @@ public class RopeBuilder : MonoBehaviour
     // 曲線描画用LineRenderer
     private LineRenderer lineRenderer;
 
+    [SerializeField]
+    private float lineSize = 1.1f;
+
     // 起動時にチェイン生成＆LineRendererセットアップ
     void Start()
     {
@@ -120,10 +123,10 @@ public class RopeBuilder : MonoBehaviour
         lineRenderer.positionCount = chainCount + 2;
 
         // 線の始点側の幅
-        lineRenderer.startWidth = 1.1f;
+        lineRenderer.startWidth = lineSize;
 
         // 線の終点側の幅
-        lineRenderer.endWidth = 1.1f;
+        lineRenderer.endWidth = lineSize;
 
         // 簡易マテリアル（Sprite用）を設定
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));

@@ -23,7 +23,8 @@ namespace MiyazakiScript
         {
             if (other.CompareTag("Player"))
             {
-                SceneManager.LoadScene("Result");
+                // TODO
+                SceneManager.LoadScene("MainGame");
             }
         }
     }
