@@ -17,12 +17,13 @@ public class SoundManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void InitializeOnLoad()
     {
-        if (Instance == null)
-        {
-            GameObject obj = new GameObject("SoundManager");
-            Instance = obj.AddComponent<SoundManager>();
-            DontDestroyOnLoad(obj);
-        }
+        var prefab = Resources.Load<GameObject>("SoundManager");
+
+        var obj = Instantiate(prefab);
+        obj.name = "SoundManager";
+        DontDestroyOnLoad(obj);
+
+        Instance = obj.GetComponent<SoundManager>();
     }
 
     private void Start()
