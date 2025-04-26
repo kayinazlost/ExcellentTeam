@@ -10,6 +10,11 @@ using System.Collections.Generic;
 // RopeBuilderクラス：ロープ（チェイン）を生成して描画するクラス
 public class RopeBuilder : MonoBehaviour
 {
+    //鮮度カラー
+    public float freshness;
+    //鮮度減少率
+    public float freshnessLost;
+
     // 始点となるRigidbody
     public Rigidbody startPoint;
 
@@ -34,6 +39,7 @@ public class RopeBuilder : MonoBehaviour
     // 起動時にチェイン生成＆LineRendererセットアップ
     void Start()
     {
+        freshness = 1.0f;
         // 中間チェインを生成
         CreateChain();
 
@@ -129,6 +135,13 @@ public class RopeBuilder : MonoBehaviour
     // LineRendererを毎フレーム更新（各チェイン位置を反映）
     void UpdateLineRenderer()
     {
+        freshness -= freshnessLost;
+        if (freshness < 0.25f)
+            freshness = 0.25f;
+
+        lineRenderer.startColor = new Color(freshness,1.0f,  freshness);
+        lineRenderer.endColor = new Color(freshness,1.0f,  freshness);
+
         // LineRendererが存在しなければ何もしない
         if (lineRenderer == null) return;
 

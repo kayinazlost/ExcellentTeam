@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInputJump : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerInputJump : MonoBehaviour
     public float m_AngularAndPowerAgnification = 10;
     [Header("プレイヤーサイド")]
     public bool m_PlayerSide;
+    [Header("ジャンプパワーゲージ")]
+    public Image m_ImageGage;
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -29,25 +32,32 @@ public class PlayerInputJump : MonoBehaviour
         {
             m_JumpPower.x = m_JumpPower.y;
         }
+        if (m_ImageGage)
+        {
+            float Powers = m_JumpPower.x - m_JumpPower.y;
+            if (Powers < 0)
+                Powers = 0;
+            m_ImageGage.fillAmount = (1.0f / (m_JumpPower.z - m_JumpPower.y)) * Powers;
+        }
     }
     public void PlayerSeidInput()
     {
         if (m_PlayerSide)
         {
             //チャージ
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.RightArrow))
                 ChargeJumpPowers();
             //ジャンプ
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.RightArrow))
                 JumpUp();
         }
         else
         {
             //チャージ
-            if (Input.GetKey(KeyCode.RightShift))
+            if (Input.GetKey(KeyCode.A))
                 ChargeJumpPowers();
             //ジャンプ
-            if (Input.GetKeyUp(KeyCode.RightShift))
+            if (Input.GetKeyUp(KeyCode.A))
                 JumpUp();
         }
     }
