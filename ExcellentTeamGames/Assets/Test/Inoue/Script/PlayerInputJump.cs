@@ -22,7 +22,7 @@ public class PlayerInputJump : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-//        m_AudioSource = GetComponent<AudioSource>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -83,9 +83,9 @@ public class PlayerInputJump : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //m_AudioSource.Stop();
-        //m_AudioSource.Play();
-        SoundManager.Instance.PlaySe("プレイヤー着地");
+        m_AudioSource.Stop();
+        m_AudioSource.Play();
+        //SoundManager.Instance.PlaySe("プレイヤー着地");
     }
     /// <summary>
     /// 接地中
