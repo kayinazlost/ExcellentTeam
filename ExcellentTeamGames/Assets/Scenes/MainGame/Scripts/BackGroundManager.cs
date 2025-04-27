@@ -12,6 +12,8 @@ namespace MiyazakiScript
         private GameObject _prefab;
         [SerializeField, Header("10mあたり何個配置する？")]
         private int density = 3;
+        [SerializeField]
+        private float _z = 1.25f;
 
         void GetTableSize(out float min, out float max)
         {
@@ -54,7 +56,7 @@ namespace MiyazakiScript
                 float spawnX = baseX + offset;
 
                 // Y座標やZ座標は適当に（例ではテーブルの高さと合わせる）
-                Vector3 spawnPos = new Vector3(spawnX, 0, _table.transform.lossyScale.z / 2);
+                Vector3 spawnPos = new Vector3(spawnX, 0, _z);
 
                 var obj = Instantiate(_prefab, spawnPos, Quaternion.identity);
                 obj.transform.parent = transform;

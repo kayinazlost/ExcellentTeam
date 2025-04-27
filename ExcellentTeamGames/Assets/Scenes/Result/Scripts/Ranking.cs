@@ -16,7 +16,7 @@ public class Ranking : MonoBehaviour
             {
                 time = data[i].PlayTime;
             }
-            _texts[i].text = time <= 0.1f ? $"{i + 1}ˆÊ [" : $"{i + 1}ˆÊ {time}•b";
+            _texts[i].text = time <= 0.1f ? $"{i + 1}ˆÊ [" : $"{i + 1}ˆÊ {time.ToString("F1")}•b";
         }
     }
 }

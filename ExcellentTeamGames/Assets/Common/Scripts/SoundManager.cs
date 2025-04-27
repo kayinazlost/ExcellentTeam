@@ -59,6 +59,7 @@ public class SoundManager : MonoBehaviour
             obj.name = "BGM";
             obj.hideFlags = HideFlags.HideAndDontSave;
             var source = obj.GetComponent<AudioSource>();
+            source.loop = true;
             bgmSource = source;
         }
     }

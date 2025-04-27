@@ -12,7 +12,7 @@ public class SetResult : MonoBehaviour
         var data = GameRecordManager.GetHistory();
         Debug.Log(data.Length);
         if (data.Length != 0)
-            m_Text.text = data[0].PlayTime.ToString("F1");
+            m_Text.text = data[0].PlayTime.ToString("F1")+"ïb";
         else
             m_Text.text = "ÉfÅ[É^Ç»Çµ";
     }

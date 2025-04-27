@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +11,15 @@ public class GameManager : MonoBehaviour
     private float _gameOver_GoTitleTime = 3f;
     [SerializeField]
     private Animator _gameOverAnim;
+    [SerializeField]
+    private GameObject _startCountDown;
 
     public float MaxTime => maxTime;
 
     public bool IsRun { get => isGameRunning; }
 
     public float elapsedTime = 0f;
-    private bool isGameRunning = true;
+    private bool isGameRunning = false;
     public float PlayTime = 0f;
 
     public float m_Times = 1.5f;
@@ -34,6 +35,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    private void Start()
+    {
+        _startCountDown.SetActive(true);
+    }
+
+    public void GameStart()
+    {
+        isGameRunning = true;
     }
 
     private void Update()
@@ -76,13 +87,15 @@ public class GameManager : MonoBehaviour
         Invoke("End",5f);
 
     }
+    private bool isEnd = false;
     private void End()
     {
         DoorSystem.SetOpenFlag(false);
+        isEnd = true;
     }
     private void LateUpdate()
     {
-        if (!isGameRunning)
+        if (isEnd)
         {
             if (m_Times <= 0.0f)
             {

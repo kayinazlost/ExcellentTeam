@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +51,10 @@ public class PlayerInputJump : MonoBehaviour
         if (m_ChargeCoolTime >= m_ChargeCoolMaxTime)
             m_ChargeCoolTime = m_ChargeCoolMaxTime;
 
-        PlayerSeidInput();
+        if (GameManager.Instance.IsRun)
+        {
+            PlayerSeidInput();
+        }
         /*
         if (m_EarthFlag)
         {

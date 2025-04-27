@@ -26,6 +26,7 @@ public class ChangeGameScene : MonoBehaviour
         {
             if (!m_Flag)
             {
+                SoundManager.Instance.PlaySe("Œˆ’è");
                 DoorSystem.SetOpenFlag(false);
                 m_Flag = true;
             }
