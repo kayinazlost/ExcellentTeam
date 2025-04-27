@@ -47,3 +47,5 @@ MonoBehaviour:
   gimmickList:
   - prefab: {fileID: 5349030098015386699, guid: ac533ab4d847abc4094b6d9632123302, type: 3}
     type: 0
+  - prefab: {fileID: 5349030098015386699, guid: 2ccf975da20a971409ec11d3ed9cefeb, type: 3}
+    type: 0

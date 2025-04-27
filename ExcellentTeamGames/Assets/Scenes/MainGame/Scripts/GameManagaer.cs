@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
 
     public bool IsRun { get => isGameRunning; }
 
-    private float elapsedTime = 0f;
+    public float elapsedTime = 0f;
     private bool isGameRunning = true;
+    public float PlayTime = 0f;
 
     private void Awake()
     {
@@ -38,7 +39,18 @@ public class GameManager : MonoBehaviour
         if (isGameRunning)
         {
             elapsedTime += Time.deltaTime;
+            PlayTime += Time.deltaTime;
         }
+    }
+
+    public void Kaihuku()
+    {
+        elapsedTime -= 10f;
+        if (elapsedTime < 0f)
+        {
+            elapsedTime = 0;
+        }
+
     }
 
     public float GetElapsedTime()

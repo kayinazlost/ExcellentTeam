@@ -24,8 +24,9 @@ public class GameRecordManager
             // セーブデータを新規作成
             data = new GameRecordData();
         }
-        data.PlayTime = Time.time;
-        saveData.AddData(data, 0);
+        data.PlayTime = GameManager.Instance.PlayTime;
+        var t = (int)(data.PlayTime * 100f);
+        saveData.AddData(data, t);
         SaveLoadManager.Save(saveData);
     }
 

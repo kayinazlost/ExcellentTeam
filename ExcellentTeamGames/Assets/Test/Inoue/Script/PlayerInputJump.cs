@@ -19,29 +19,43 @@ public class PlayerInputJump : MonoBehaviour
     public Image m_ImageGage;
     [Header("オーディオソース")]
     public AudioSource m_AudioSource;
-
+    [Header("ジャンプ不可時間")]
     public float m_JUmpOKChargePoint = 0.25f;
+    [Header("チャージクールタイム")]
+    public float m_ChargeCoolTime = 0.0f;
+    [Header("チャージクール最大タイム")]
+    public float m_ChargeCoolMaxTime = 2.0f;
     void Start()
     {
+        m_ChargeCoolTime = 0.0f;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        m_ChargeCoolTime += 1.0f * Time.deltaTime;
+        if (m_ChargeCoolTime >= m_ChargeCoolMaxTime)
+            m_ChargeCoolTime = m_ChargeCoolMaxTime;
+
+        PlayerSeidInput();
+        /*
         if (m_EarthFlag)
         {
-            PlayerSeidInput();
         }
         else
         {
             m_JumpPower.x = m_JumpPower.y;
         }
+        */
+
         if (m_ImageGage)
         {
             m_ImageGage.fillAmount = ChargePoint();
             if (ChargePoint() > m_JUmpOKChargePoint)
-                m_ImageGage.color = Color.blue;
+            {
+                m_ImageGage.color = new Color(1, ChargePoint(), ChargePoint());
+            }
             else
                 m_ImageGage.color = Color.red;
 
@@ -77,10 +91,13 @@ public class PlayerInputJump : MonoBehaviour
     }
     public void ChargeJumpPowers()
     {
-        //チャージ
-        m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
-        if (m_JumpPower.x > m_JumpPower.z)
-            m_JumpPower.x = m_JumpPower.z;
+        if (m_ChargeCoolTime >=  m_ChargeCoolMaxTime)
+        {
+            //チャージ
+            m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
+            if (m_JumpPower.x > m_JumpPower.z)
+                m_JumpPower.x = m_JumpPower.z;
+        }
     }
     public void JumpUp()
     {
@@ -92,7 +109,9 @@ public class PlayerInputJump : MonoBehaviour
                 (this.transform.right * Mathf.Max(
                     10.0f,
                     (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
+            m_JumpPower.x = m_JumpPower.y;
             m_EarthFlag = false;
+            m_ChargeCoolTime = 0.0f;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -107,8 +126,10 @@ public class PlayerInputJump : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionStay(Collision collision)
     {
-        if (!m_EarthFlag && collision.transform.tag == "Map") 
+        if (!m_EarthFlag && collision.transform.tag == "Map")
+        {
             m_EarthFlag = true;
+        }
     }
     /// <summary>
     /// 接地解除
