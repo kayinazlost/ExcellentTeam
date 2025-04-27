@@ -10,6 +10,8 @@ namespace MiyazakiScript
 
         private bool isGoal = false;
 
+        public float m_Times = 1.5f;
+
         void Start()
         {
             var collider = table.GetComponent<Collider>();
@@ -30,8 +32,21 @@ namespace MiyazakiScript
                 isGoal = true;
                 // TODO
                 GameRecordManager.Save();
-                SceneManager.LoadScene("Title");
             }
         }
+        private void Update()
+        {
+            if (isGoal)
+            {
+                if (m_Times <= 0.0f)
+                {
+                    SceneManager.LoadScene("Title");
+                    Debug.Log("Ø‚è‘Ö‚¦‚Ü‚µ‚½!");
+                }
+                else
+                    m_Times -= Time.deltaTime;
+            }
+        }
+
     }
 }
