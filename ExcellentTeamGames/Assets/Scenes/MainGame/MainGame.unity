@@ -657,6 +657,7 @@ MonoBehaviour:
   maxTime: 25
   _gameOver_GoTitleTime: 3
   _gameOverAnim: {fileID: 599480991}
+  elapsedTime: 0
 --- !u!1 &599480988
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,8 +764,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: 50}
+  m_SizeDelta: {x: 30, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &623287392
 MonoBehaviour:
@@ -786,14 +787,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 2
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &623287393
@@ -1093,6 +1094,7 @@ MonoBehaviour:
   m_ImageGage: {fileID: 1270225378}
   m_AudioSource: {fileID: 753755039}
   m_JUmpOKChargePoint: 0.05
+  m_OnPlayer: 0
 --- !u!54 &753755034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1727,6 +1729,7 @@ MonoBehaviour:
   m_ImageGage: {fileID: 623287392}
   m_AudioSource: {fileID: 964539796}
   m_JUmpOKChargePoint: 0.05
+  m_OnPlayer: 0
 --- !u!54 &964539791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1967,13 +1970,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freshness: 1
-  freshnessLost: 0.0001
+  freshnessLost: 0.01
   startPoint: {fileID: 964539791}
   endPoint: {fileID: 753755034}
   chainCount: 20
   chainSpacing: 0.5
   chainPrefab: {fileID: 1959875885}
   lineSize: 0.4
+  m_StartColor: {r: 0.9564579, g: 0.9622642, b: 0.6881097, a: 1}
+  m_EndColor: {r: 0.37449142, g: 0.3886792, b: 0.084336, a: 1}
+  manager: {fileID: 537652853}
 --- !u!4 &966906923
 Transform:
   m_ObjectHideFlags: 0
@@ -2619,14 +2625,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 2
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1270225379
@@ -2653,8 +2659,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 100, y: 50}
+  m_SizeDelta: {x: 30, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1430123548
 GameObject:
@@ -2746,7 +2752,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u6D88\u8CBB\u671F\u9650\u304C\u5207\u308C\u3066\u3057\u307E\u3063\u305F\u2026"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d8673d769be8a8c4b824c469ee1f0d7a, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 4aaab32c9bcd2e14eb310fa66039c7d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

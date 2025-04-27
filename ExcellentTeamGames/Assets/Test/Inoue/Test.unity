@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 753755039}
   m_Layer: 0
   m_Name: "\u30D7\u30EC\u30A4\u30E4\u30FC2"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -600,6 +600,8 @@ MonoBehaviour:
   m_PlayerSide: 1
   m_ImageGage: {fileID: 1270225378}
   m_AudioSource: {fileID: 0}
+  m_JUmpOKChargePoint: 0.25
+  m_OnPlayer: 0
 --- !u!54 &753755034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1186,7 +1188,7 @@ GameObject:
   - component: {fileID: 964539796}
   m_Layer: 0
   m_Name: "\u30D7\u30EC\u30A4\u30E4\u30FC1"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1210,6 +1212,8 @@ MonoBehaviour:
   m_PlayerSide: 0
   m_ImageGage: {fileID: 623287392}
   m_AudioSource: {fileID: 0}
+  m_JUmpOKChargePoint: 0.25
+  m_OnPlayer: 0
 --- !u!54 &964539791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1456,6 +1460,7 @@ MonoBehaviour:
   chainCount: 20
   chainSpacing: 0.5
   chainPrefab: {fileID: 1901250321}
+  lineSize: 1.1
 --- !u!4 &966906923
 Transform:
   m_ObjectHideFlags: 0
@@ -1750,7 +1755,7 @@ GameObject:
   - component: {fileID: 1901250322}
   m_Layer: 0
   m_Name: "\u63A5\u7D9A\u5B50"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
