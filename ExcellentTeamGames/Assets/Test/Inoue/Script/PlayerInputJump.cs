@@ -19,10 +19,13 @@ public class PlayerInputJump : MonoBehaviour
     public Image m_ImageGage;
     [Header("オーディオソース")]
     public AudioSource m_AudioSource;
-
+    [Header("ジャンプ不可時間")]
     public float m_JUmpOKChargePoint = 0.25f;
+    [Header("Player接触中+地面非接触中時の時間/Playerに乗っている状態での対策用")]
+    public float m_OnPlayer = 0.0f;
     void Start()
     {
+        m_OnPlayer = 0.0f;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_AudioSource = GetComponent<AudioSource>();
     }
@@ -41,7 +44,9 @@ public class PlayerInputJump : MonoBehaviour
         {
             m_ImageGage.fillAmount = ChargePoint();
             if (ChargePoint() > m_JUmpOKChargePoint)
-                m_ImageGage.color = Color.blue;
+            {
+                m_ImageGage.color = new Color(1, ChargePoint(), ChargePoint());
+            }
             else
                 m_ImageGage.color = Color.red;
 
@@ -77,10 +82,13 @@ public class PlayerInputJump : MonoBehaviour
     }
     public void ChargeJumpPowers()
     {
-        //チャージ
-        m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
-        if (m_JumpPower.x > m_JumpPower.z)
-            m_JumpPower.x = m_JumpPower.z;
+        if (m_OnPlayer > 0.5f)
+        {
+            //チャージ
+            m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
+            if (m_JumpPower.x > m_JumpPower.z)
+                m_JumpPower.x = m_JumpPower.z;
+        }
     }
     public void JumpUp()
     {
@@ -93,6 +101,7 @@ public class PlayerInputJump : MonoBehaviour
                     10.0f,
                     (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
             m_EarthFlag = false;
+            m_OnPlayer = 0.0f;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -107,8 +116,16 @@ public class PlayerInputJump : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionStay(Collision collision)
     {
-        if (!m_EarthFlag && collision.transform.tag == "Map") 
+        if (!m_EarthFlag && collision.transform.tag == "Map")
+        {
             m_EarthFlag = true;
+        }
+        if (collision.transform.tag == "Player")
+        {
+            m_OnPlayer += 1.0f * Time.deltaTime;
+            if(m_OnPlayer > 1.0f)
+                m_OnPlayer = 1.0f;
+        }
     }
     /// <summary>
     /// 接地解除

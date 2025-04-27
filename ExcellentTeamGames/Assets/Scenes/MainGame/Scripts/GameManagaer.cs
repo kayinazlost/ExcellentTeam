@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsRun { get => isGameRunning; }
 
-    private float elapsedTime = 0f;
+    public float elapsedTime = 0f;
     private bool isGameRunning = true;
 
     private void Awake()

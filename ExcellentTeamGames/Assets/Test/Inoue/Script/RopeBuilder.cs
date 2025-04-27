@@ -39,6 +39,12 @@ public class RopeBuilder : MonoBehaviour
     [SerializeField]
     private float lineSize = 1.1f;
 
+    public Color m_StartColor = Color.white;
+
+    public Color m_EndColor = Color.white;
+
+    public GameManager manager;
+
     // 起動時にチェイン生成＆LineRendererセットアップ
     void Start()
     {
@@ -138,12 +144,20 @@ public class RopeBuilder : MonoBehaviour
     // LineRendererを毎フレーム更新（各チェイン位置を反映）
     void UpdateLineRenderer()
     {
+        /*
         freshness -= freshnessLost;
-        if (freshness < 0.25f)
-            freshness = 0.25f;
+        if (freshness < 0.0f)
+            freshness = 0.0f;
+        */
 
-        lineRenderer.startColor = new Color(freshness,1.0f,  freshness);
-        lineRenderer.endColor = new Color(freshness,1.0f,  freshness);
+        float STL = (1.0f / manager.MaxTime) * manager.elapsedTime;
+        if (STL > 1.0f) STL = 1.0f;
+
+        Color freshnessSet = Color.Lerp(m_StartColor, m_EndColor, STL);
+
+
+        lineRenderer.startColor = freshnessSet;
+        lineRenderer.endColor = freshnessSet;
 
         // LineRendererが存在しなければ何もしない
         if (lineRenderer == null) return;
