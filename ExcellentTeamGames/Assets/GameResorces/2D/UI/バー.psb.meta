@@ -117,9 +117,9 @@ ScriptedImporter:
     spritePosition: {x: 84, y: 151}
   - name: "\uFF11"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
+    border: {x: 50, y: 0, z: 700, w: 0}
     rect:
       serializedVersion: 2
       x: 2215
@@ -138,9 +138,9 @@ ScriptedImporter:
     spritePosition: {x: 197, y: 97}
   - name: "\uFF12"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
+    border: {x: 50, y: 0, z: 700, w: 0}
     rect:
       serializedVersion: 2
       x: 1517
@@ -159,9 +159,9 @@ ScriptedImporter:
     spritePosition: {x: 197, y: 166}
   - name: "\uFF13"
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
+    border: {x: 50, y: 0, z: 700, w: 0}
     rect:
       serializedVersion: 2
       x: 2215
@@ -180,9 +180,9 @@ ScriptedImporter:
     spritePosition: {x: 197, y: 164}
   - name: good
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
+    border: {x: 50, y: 0, z: 500, w: 0}
     rect:
       serializedVersion: 2
       x: 4
@@ -201,9 +201,9 @@ ScriptedImporter:
     spritePosition: {x: 197, y: 166}
   - name: bad
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    alignment: 4
+    border: {x: 50, y: 0, z: 300, w: 0}
     rect:
       serializedVersion: 2
       x: 4
@@ -256,7 +256,43 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
