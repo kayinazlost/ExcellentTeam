@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerInputJump : MonoBehaviour
 {
+    public List<string> m_Message;
+    public Text m_MessageText;
+    public float m_TextTime = 0;
     [Header("ï®óù")]
     public Rigidbody m_Rigidbody;
     [Header("ê⁄ínÉtÉâÉO")]
@@ -34,6 +37,17 @@ public class PlayerInputJump : MonoBehaviour
 
     void Update()
     {
+        if (m_TextTime <= 0.0f)
+        {
+            m_MessageText.text = "";
+        }
+        else
+        { 
+            m_TextTime -= Time.deltaTime;
+            if (m_TextTime <= 0.0f)
+                m_TextTime = 0.0f;
+        }
+
         m_ChargeCoolTime += 1.0f * Time.deltaTime;
         if (m_ChargeCoolTime >= m_ChargeCoolMaxTime)
             m_ChargeCoolTime = m_ChargeCoolMaxTime;
@@ -112,6 +126,8 @@ public class PlayerInputJump : MonoBehaviour
             m_JumpPower.x = m_JumpPower.y;
             m_EarthFlag = false;
             m_ChargeCoolTime = 0.0f;
+            m_MessageText.text = m_Message[Random.Range(0, m_Message.Count)];
+            m_TextTime = 2.0f;
         }
     }
     private void OnCollisionEnter(Collision collision)
