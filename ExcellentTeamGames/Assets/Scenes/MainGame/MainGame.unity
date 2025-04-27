@@ -1094,7 +1094,8 @@ MonoBehaviour:
   m_ImageGage: {fileID: 1270225378}
   m_AudioSource: {fileID: 753755039}
   m_JUmpOKChargePoint: 0.05
-  m_OnPlayer: 0
+  m_ChargeCoolTime: 0
+  m_ChargeCoolMaxTime: 2
 --- !u!54 &753755034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1729,7 +1730,8 @@ MonoBehaviour:
   m_ImageGage: {fileID: 623287392}
   m_AudioSource: {fileID: 964539796}
   m_JUmpOKChargePoint: 0.05
-  m_OnPlayer: 0
+  m_ChargeCoolTime: 0
+  m_ChargeCoolMaxTime: 2
 --- !u!54 &964539791
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2752,8 +2754,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u6D88\u8CBB\u671F\u9650\u304C\u5207\u308C\u3066\u3057\u307E\u3063\u305F\u2026"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 2100000, guid: 4aaab32c9bcd2e14eb310fa66039c7d5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d8673d769be8a8c4b824c469ee1f0d7a, type: 2}
+  m_sharedMaterial: {fileID: 1280404428505765313, guid: d8673d769be8a8c4b824c469ee1f0d7a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
