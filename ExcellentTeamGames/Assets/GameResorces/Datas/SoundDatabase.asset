@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Title
-    clip: {fileID: 8300000, guid: 168338990c3e1104eae285bbef292220, type: 3}
+    clip: {fileID: 8300000, guid: 71e5805555517654ea6c5671f906aa8e, type: 3}
   - name: MainGame
-    clip: {fileID: 8300000, guid: 4affb7ee2a699214c999213d8516c358, type: 3}
+    clip: {fileID: 8300000, guid: 0d2de52379257b4488120828fa5a90ae, type: 3}
   - name: Result
-    clip: {fileID: 8300000, guid: 95a117d72a6b0c348aa7356721ef6285, type: 3}
+    clip: {fileID: 8300000, guid: e27470fc6471c114a87f751aba716163, type: 3}
   - name: "\u30D7\u30EC\u30A4\u30E4\u30FC\u7740\u5730"
     clip: {fileID: 8300000, guid: 2fa15dc4869cfa14091b452bd6a5b810, type: 3}
