@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class DoorSystem : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class DoorSystem : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         // --- 起動時に自身をstatic変数に代入しておく ---
         instance = this;
+        SetOpenFlag(m_OpenFlag);
     }
 
     // --- static関数でm_OpenFlagを変更できるようにする ---
@@ -30,4 +32,5 @@ public class DoorSystem : MonoBehaviour
             instance.m_Animator.SetBool("開く", flag);
         }
     }
+
 }
