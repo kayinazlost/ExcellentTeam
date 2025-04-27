@@ -1113,7 +1113,8 @@ MonoBehaviour:
   m_ImageGage: {fileID: 1270225378}
   m_AudioSource: {fileID: 753755039}
   m_JUmpOKChargePoint: 0.05
-  m_OnPlayer: 0
+  m_ChargeCoolTime: 0
+  m_ChargeCoolMaxTime: 2
 --- !u!54 &753755034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1918,7 +1919,8 @@ MonoBehaviour:
   m_ImageGage: {fileID: 623287392}
   m_AudioSource: {fileID: 964539796}
   m_JUmpOKChargePoint: 0.05
-  m_OnPlayer: 0
+  m_ChargeCoolTime: 0
+  m_ChargeCoolMaxTime: 2
 --- !u!54 &964539791
 Rigidbody:
   m_ObjectHideFlags: 0

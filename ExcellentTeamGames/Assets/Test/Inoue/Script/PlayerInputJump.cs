@@ -21,25 +21,34 @@ public class PlayerInputJump : MonoBehaviour
     public AudioSource m_AudioSource;
     [Header("ジャンプ不可時間")]
     public float m_JUmpOKChargePoint = 0.25f;
-    [Header("Player接触中+地面非接触中時の時間/Playerに乗っている状態での対策用")]
-    public float m_OnPlayer = 0.0f;
+    [Header("チャージクールタイム")]
+    public float m_ChargeCoolTime = 0.0f;
+    [Header("チャージクール最大タイム")]
+    public float m_ChargeCoolMaxTime = 2.0f;
     void Start()
     {
-        m_OnPlayer = 0.0f;
+        m_ChargeCoolTime = 0.0f;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        m_ChargeCoolTime += 1.0f * Time.deltaTime;
+        if (m_ChargeCoolTime >= m_ChargeCoolMaxTime)
+            m_ChargeCoolTime = m_ChargeCoolMaxTime;
+
+        PlayerSeidInput();
+        /*
         if (m_EarthFlag)
         {
-            PlayerSeidInput();
         }
         else
         {
             m_JumpPower.x = m_JumpPower.y;
         }
+        */
+
         if (m_ImageGage)
         {
             m_ImageGage.fillAmount = ChargePoint();
@@ -82,7 +91,7 @@ public class PlayerInputJump : MonoBehaviour
     }
     public void ChargeJumpPowers()
     {
-        if (m_OnPlayer > 0.5f)
+        if (m_ChargeCoolTime >=  m_ChargeCoolMaxTime)
         {
             //チャージ
             m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
@@ -100,8 +109,9 @@ public class PlayerInputJump : MonoBehaviour
                 (this.transform.right * Mathf.Max(
                     10.0f,
                     (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z))));
+            m_JumpPower.x = m_JumpPower.y;
             m_EarthFlag = false;
-            m_OnPlayer = 0.0f;
+            m_ChargeCoolTime = 0.0f;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -119,12 +129,6 @@ public class PlayerInputJump : MonoBehaviour
         if (!m_EarthFlag && collision.transform.tag == "Map")
         {
             m_EarthFlag = true;
-        }
-        if (collision.transform.tag == "Player")
-        {
-            m_OnPlayer += 1.0f * Time.deltaTime;
-            if(m_OnPlayer > 1.0f)
-                m_OnPlayer = 1.0f;
         }
     }
     /// <summary>
