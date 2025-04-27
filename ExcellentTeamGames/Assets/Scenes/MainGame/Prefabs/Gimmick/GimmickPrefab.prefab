@@ -49,3 +49,13 @@ MonoBehaviour:
     type: 0
   - prefab: {fileID: 5349030098015386699, guid: 2ccf975da20a971409ec11d3ed9cefeb, type: 3}
     type: 0
+  - prefab: {fileID: 5785442183718006803, guid: e8276a8b7f3a5ac4f9d4ea27f34c65ef, type: 3}
+    type: 0
+  - prefab: {fileID: 5397443505350553217, guid: a245b4983ccc3b64fbe96e2902d69a86, type: 3}
+    type: 0
+  - prefab: {fileID: 5165323429131144404, guid: bdfad88b8bcd861499c21197ec15c86d, type: 3}
+    type: 0
+  - prefab: {fileID: 1153593174666235081, guid: b26348b006df7554cb473529ca0c7890, type: 3}
+    type: 0
+  - prefab: {fileID: 4923931006762678133, guid: 4f2fc9682177ff84e87fed8be2e2885e, type: 3}
+    type: 0

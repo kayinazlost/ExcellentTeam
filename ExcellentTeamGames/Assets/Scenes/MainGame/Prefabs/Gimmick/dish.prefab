@@ -93,7 +93,9 @@ PrefabInstance:
       value: dish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -8700617353114198275, guid: 0cfc302da46aa2146b3ea043fc5ee25b, type: 3}
+    - {fileID: 65702495048144492, guid: 0cfc302da46aa2146b3ea043fc5ee25b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -3216801498260132207, guid: 0cfc302da46aa2146b3ea043fc5ee25b, type: 3}

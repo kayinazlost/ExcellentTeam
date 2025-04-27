@@ -1194,8 +1194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rigidbody: {fileID: 0}
   m_EarthFlag: 0
-  m_JumpPower: {x: 0, y: 200, z: 1200}
-  m_AngularAndPowerAgnification: 100
+  m_JumpPower: {x: 0, y: 200, z: 600}
+  m_AngularAndPowerAgnification: 800
   m_PlayerSide: 1
   m_ImageGage: {fileID: 1270225378}
   m_AudioSource: {fileID: 753755039}
@@ -1887,7 +1887,7 @@ Transform:
   m_GameObject: {fileID: 870713394}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.22630006}
+  m_LocalPosition: {x: 0, y: -0, z: 0.836}
   m_LocalScale: {x: 0.033333335, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1939,7 +1939,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 200, y: 3.7050653}
+  m_Size: {x: 200, y: 4.9245276}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2085,8 +2085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rigidbody: {fileID: 0}
   m_EarthFlag: 0
-  m_JumpPower: {x: 0, y: 200, z: 1200}
-  m_AngularAndPowerAgnification: 100
+  m_JumpPower: {x: 0, y: 200, z: 600}
+  m_AngularAndPowerAgnification: 800
   m_PlayerSide: 0
   m_ImageGage: {fileID: 623287392}
   m_AudioSource: {fileID: 964539796}
@@ -3509,7 +3509,7 @@ Transform:
   m_GameObject: {fileID: 1563897740}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2, z: 1.674}
+  m_LocalPosition: {x: 0, y: -2, z: 2.97}
   m_LocalScale: {x: 0.013333335, y: 0.19999996, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
