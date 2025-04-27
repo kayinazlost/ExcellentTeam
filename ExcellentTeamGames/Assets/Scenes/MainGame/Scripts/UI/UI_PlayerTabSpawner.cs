@@ -36,6 +36,22 @@ public class UI_PlayerTabSpawner : MonoBehaviour
             // 色とテキストをセット
             Color color = (i < playerColors.Count) ? playerColors[i] : Color.white;
             string text = $"Player {i + 1}";
+            switch (i)
+            {
+                case 0:
+                    text += "[A]";
+                    break;
+                case 1:
+                    text += "[→]";
+                    break;
+                case 2:
+                    text += "[B]";
+                    break;
+                default:
+                    text += "[C]";
+                    break;
+            }
+
 
             tab.Set(color, text);
         }
