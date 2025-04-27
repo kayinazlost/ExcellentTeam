@@ -553,6 +553,7 @@ MonoBehaviour:
   _gameOver_GoTitleTime: 3
   _gameOverAnim: {fileID: 599480991}
   elapsedTime: 0
+  PlayTime: 0
 --- !u!1 &599480988
 GameObject:
   m_ObjectHideFlags: 0
