@@ -639,6 +639,7 @@ MonoBehaviour:
   _gameOverAnim: {fileID: 599480991}
   elapsedTime: 0
   PlayTime: 0
+  m_Times: 1.5
 --- !u!1 &599480988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2870,6 +2871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   table: {fileID: 224249055}
+  m_Times: 1.5
 --- !u!65 &1229824628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3466,6 +3468,10 @@ PrefabInstance:
     - target: {fileID: 6180528683598070104, guid: 16f471b3800728746ae51493dda55e53, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6691172745182181415, guid: 16f471b3800728746ae51493dda55e53, type: 3}
+      propertyPath: m_OpenFlag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

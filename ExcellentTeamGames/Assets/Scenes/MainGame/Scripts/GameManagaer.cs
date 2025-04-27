@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private bool isGameRunning = true;
     public float PlayTime = 0f;
 
+    public float m_Times = 1.5f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -70,15 +72,30 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over!");
         isGameRunning = false;
         _gameOverAnim.SetTrigger("In");
-        StartCoroutine(ReturnToTitle());
-    }
+        //StartCoroutine(ReturnToTitle());
+        DoorSystem.SetOpenFlag(false);
 
+    }
+    private void LateUpdate()
+    {
+        if (!isGameRunning)
+        {
+            if (m_Times <= 0.0f)
+            {
+                SceneManager.LoadScene("Title");
+                Debug.Log("Ø‚è‘Ö‚¦‚Ü‚µ‚½!");
+            }
+            else
+                m_Times -= Time.deltaTime;
+        }
+    }
+    /*
     private IEnumerator ReturnToTitle()
     {
         yield return new WaitForSeconds(_gameOver_GoTitleTime);
         SceneManager.LoadScene("Title");
     }
-
+    */
     private void OnDestroy()
     {
         if (Instance == this)
