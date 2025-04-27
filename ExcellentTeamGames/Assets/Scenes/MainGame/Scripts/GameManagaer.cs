@@ -73,8 +73,12 @@ public class GameManager : MonoBehaviour
         isGameRunning = false;
         _gameOverAnim.SetTrigger("In");
         //StartCoroutine(ReturnToTitle());
-        DoorSystem.SetOpenFlag(false);
+        Invoke("End",5f);
 
+    }
+    private void End()
+    {
+        DoorSystem.SetOpenFlag(false);
     }
     private void LateUpdate()
     {

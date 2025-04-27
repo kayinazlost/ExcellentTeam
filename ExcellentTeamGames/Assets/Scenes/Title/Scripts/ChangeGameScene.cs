@@ -13,6 +13,7 @@ public class ChangeGameScene : MonoBehaviour
     /// </summary>
     public void OnStartButton()
     {
+        return;
         if (!m_Flag)
         {
             DoorSystem.SetOpenFlag(false);
@@ -21,6 +22,15 @@ public class ChangeGameScene : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (!m_Flag)
+            {
+                DoorSystem.SetOpenFlag(false);
+                m_Flag = true;
+            }
+        }
+
         if (m_Flag)
         {
             if (m_Times <= 0.0f)

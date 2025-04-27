@@ -10,11 +10,23 @@ public class Changetitle : MonoBehaviour
 
     public void OnChangetitle()
     {
+        return;
         //SceneManager.LoadScene("Title");
         if (!m_Flag)
         {
             DoorSystem.SetOpenFlag(false);
             m_Flag = true;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (!m_Flag)
+            {
+                DoorSystem.SetOpenFlag(false);
+                m_Flag = true;
+            }
         }
     }
     private void LateUpdate()
