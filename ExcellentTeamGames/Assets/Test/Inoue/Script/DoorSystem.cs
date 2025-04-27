@@ -31,5 +31,12 @@ public class DoorSystem : MonoBehaviour
             instance.m_Animator.SetBool("ŠJ‚­", flag);
         }
     }
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
 
 }

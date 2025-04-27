@@ -26,7 +26,14 @@ namespace MiyazakiScript
 
         private void OnTriggerEnter(Collider other)
         {
+            if (GameManager.Instance.IsRun == false)
+                return;
+
             if (isGoal) return;
+
+            GameManager.Instance.StopTimer();
+            DoorSystem.SetOpenFlag(false);
+
             if (other.CompareTag("Player"))
             {
                 isGoal = true;
@@ -40,7 +47,7 @@ namespace MiyazakiScript
             {
                 if (m_Times <= 0.0f)
                 {
-                    SceneManager.LoadScene("Title");
+                    SceneManager.LoadScene("Result");
                     Debug.Log("Ø‚è‘Ö‚¦‚Ü‚µ‚½!");
                 }
                 else
