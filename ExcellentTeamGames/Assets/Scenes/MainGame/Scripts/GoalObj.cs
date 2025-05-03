@@ -7,10 +7,16 @@ namespace MiyazakiScript
     public class GoalObj : MonoBehaviour
     {
         [SerializeField] private GameObject table; // 右端を取りたいオブジェクト
+        [SerializeField] private GameObject goaltext;
 
         private bool isGoal = false;
 
         public float m_Times = 1.5f;
+
+        private void Awake()
+        {
+            goaltext.SetActive(false);
+        }
 
         void Start()
         {
@@ -37,6 +43,7 @@ namespace MiyazakiScript
             if (other.CompareTag("Player"))
             {
                 isGoal = true;
+                goaltext.SetActive(true);
                 // TODO
                 GameRecordManager.Save();
             }
