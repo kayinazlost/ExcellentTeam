@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: EXCELLENTteam
-  productName: "\u9BAE\u5EA6\u304C\u5927\u4E8B\uFF01\u3059\u3059\u3081\u3046\u3069\u3093\u304F\u3093\uFF01"
+  productName: "\u9BAE\u5EA6\u304C\u5927\u4E8B\uFF01\u3059\u3059\u3081\u3046\u3069\u3093\u304F\u3093"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
