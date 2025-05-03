@@ -7,6 +7,7 @@ using unityroom.Api;
 
 public class SetResult : MonoBehaviour
 {
+    public GameObject[] resultHankoObj;
     public TMPro.TextMeshProUGUI m_Text;
     void Start()
     {
@@ -14,6 +15,20 @@ public class SetResult : MonoBehaviour
         Debug.Log(data.Length);
         if (data.Length != 0)
         {
+            var rate = data[0].PlayTime / 300f;
+            if (rate > 0.7f)
+            {
+                resultHankoObj[0].SetActive(true);
+            }
+            else if (rate > 0.4f)
+            {
+                resultHankoObj[1].SetActive(true);
+            }
+            else
+            {
+                resultHankoObj[2].SetActive(true);
+            }
+
 #if UNITY_WEBGL
             // ボードNo1にスコアを送信する。
             UnityroomApiClient.Instance.SendScore(1, data[0].PlayTime, ScoreboardWriteMode.HighScoreDesc);
