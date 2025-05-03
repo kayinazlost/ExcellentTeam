@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public float elapsedTime = 0f;
     private bool isGameRunning = false;
+    public bool isGameClear = false;
     public float PlayTime = 0f;
 
     public float m_Times = 1.5f;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGameClear) return;
         if (isGameRunning)
         {
             elapsedTime += Time.deltaTime;

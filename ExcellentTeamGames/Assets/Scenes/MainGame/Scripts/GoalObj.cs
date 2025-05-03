@@ -8,9 +8,12 @@ namespace MiyazakiScript
     {
         [SerializeField] private GameObject table; // 右端を取りたいオブジェクト
         [SerializeField] private GameObject goaltext;
+        [SerializeField] private GameObject effect;
 
         private bool isGoal = false;
 
+
+        public float m_GoResultTimes = 1.5f;
         public float m_Times = 1.5f;
 
         private void Awake()
@@ -37,13 +40,13 @@ namespace MiyazakiScript
 
             if (isGoal) return;
 
-            GameManager.Instance.StopTimer();
-            DoorSystem.SetOpenFlag(false);
+            GameManager.Instance.isGameClear = true;
 
             if (other.CompareTag("Player"))
             {
                 isGoal = true;
                 goaltext.SetActive(true);
+                effect.SetActive(true);
                 // TODO
                 GameRecordManager.Save();
             }
@@ -52,6 +55,15 @@ namespace MiyazakiScript
         {
             if (isGoal)
             {
+                if(m_GoResultTimes > 0)
+                {
+                    m_GoResultTimes -= Time.deltaTime;
+                    if (m_GoResultTimes <= 0)
+                    {
+                        DoorSystem.SetOpenFlag(false);
+                    }
+                    return;
+                }
                 if (m_Times <= 0.0f)
                 {
                     SceneManager.LoadScene("Result");

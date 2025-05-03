@@ -19,6 +19,8 @@ public class PlayerInputJump : MonoBehaviour
     public bool m_PlayerSide;
     [Header("ジャンプパワーゲージ")]
     public Image m_arrowImage;
+    [SerializeField]
+    private Gradient m_chargeGra;
     [Header("オーディオソース")]
     public AudioSource m_AudioSource;
     [Header("ジャンプ不可時間")]
@@ -27,11 +29,11 @@ public class PlayerInputJump : MonoBehaviour
     public float m_ChargeCoolTime = 0.0f;
     [Header("チャージクール最大タイム")]
     public float m_ChargeCoolMaxTime = 2.0f;
+    [SerializeField]
+    private GameObject m_effectObj;
     void Start()
     {
         m_ChargeCoolTime = 0.0f;
-        m_Rigidbody = GetComponent<Rigidbody>();
-        m_AudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -69,7 +71,7 @@ public class PlayerInputJump : MonoBehaviour
         {
             if (ChargePoint() > m_JUmpOKChargePoint)
             {
-                m_arrowImage.color = new Color(1, ChargePoint(), ChargePoint(), 1);
+                m_arrowImage.color = m_chargeGra.Evaluate(ChargePoint());
             }
             else
                 m_arrowImage.color = Color.clear;
@@ -129,6 +131,18 @@ public class PlayerInputJump : MonoBehaviour
     {
         if (ChargePoint() > m_JUmpOKChargePoint)
         {
+            RaycastHit hit;
+            Vector3 origin = transform.position;
+
+            if (Physics.Raycast(origin, Vector3.down, out hit, Mathf.Infinity))
+            {
+                // エフェクト
+                var pos = hit.point;
+                //pos.y = 0.05f;
+                GameObject obj = Instantiate(m_effectObj, pos, Quaternion.identity);
+                Destroy(obj, 3f); // 3秒後に自動で削除される
+            }
+
             //ジャンプ
             m_Rigidbody.AddForce(
                 (this.transform.up * m_JumpPower.x) +
@@ -140,7 +154,6 @@ public class PlayerInputJump : MonoBehaviour
             m_ChargeCoolTime = 0.0f;
             m_MessageText.text = m_Message[Random.Range(0, m_Message.Count)];
             m_TextTime = 2.0f;
-
         }
     }
     private void OnCollisionEnter(Collision collision)
