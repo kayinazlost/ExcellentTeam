@@ -18,7 +18,7 @@ public class PlayerInputJump : MonoBehaviour
     [Header("プレイヤーサイド")]
     public bool m_PlayerSide;
     [Header("ジャンプパワーゲージ")]
-    public Image m_ImageGage;
+    public Image m_arrowImage;
     [Header("オーディオソース")]
     public AudioSource m_AudioSource;
     [Header("ジャンプ不可時間")]
@@ -65,16 +65,14 @@ public class PlayerInputJump : MonoBehaviour
         }
         */
 
-        if (m_ImageGage)
+        if (m_arrowImage)
         {
-            m_ImageGage.fillAmount = ChargePoint();
             if (ChargePoint() > m_JUmpOKChargePoint)
             {
-                m_ImageGage.color = new Color(1, ChargePoint(), ChargePoint());
+                m_arrowImage.color = new Color(1, ChargePoint(), ChargePoint(), 1);
             }
             else
-                m_ImageGage.color = Color.red;
-
+                m_arrowImage.color = Color.clear;
         }
     }
     public float ChargePoint()
@@ -113,6 +111,18 @@ public class PlayerInputJump : MonoBehaviour
             m_JumpPower.x += m_AngularAndPowerAgnification * Time.deltaTime;
             if (m_JumpPower.x > m_JumpPower.z)
                 m_JumpPower.x = m_JumpPower.z;
+
+            Vector2 jumpDir =
+                    (Vector2)(this.transform.up * m_JumpPower.x) +
+                    (Vector2)(this.transform.right * Mathf.Max(
+                        10.0f,
+                        (m_AngularAndPowerAgnification / 10) - (m_JumpPower.x - m_JumpPower.z)));
+
+            // Z回転角を求める（上が0度、右が-90度になるよう調整）
+            float angle = Mathf.Atan2(jumpDir.y, jumpDir.x) * Mathf.Rad2Deg;
+            float zRotation = angle - 90f; // 「上」を基準にするため90度引く
+
+            m_arrowImage.rectTransform.rotation = Quaternion.Euler(0, 0, zRotation);
         }
     }
     public void JumpUp()
@@ -130,6 +140,7 @@ public class PlayerInputJump : MonoBehaviour
             m_ChargeCoolTime = 0.0f;
             m_MessageText.text = m_Message[Random.Range(0, m_Message.Count)];
             m_TextTime = 2.0f;
+
         }
     }
     private void OnCollisionEnter(Collision collision)
