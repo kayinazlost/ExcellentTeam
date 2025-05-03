@@ -35,6 +35,7 @@ public class RopeBuilder : MonoBehaviour
 
     // 曲線描画用LineRenderer
     private LineRenderer lineRenderer;
+    private LineRenderer outlineRenderer;
 
     [SerializeField]
     private float lineSize = 1.1f;
@@ -42,6 +43,8 @@ public class RopeBuilder : MonoBehaviour
     public Color m_StartColor = Color.white;
 
     public Color m_EndColor = Color.white;
+
+    public Color m_OutLineColor = Color.white;
 
     public GameManager manager;
 
@@ -119,26 +122,53 @@ public class RopeBuilder : MonoBehaviour
         endJoint.connectedAnchor = Vector3.zero;
     }
 
-    // LineRendererを設定する処理
+    //// LineRendererを設定する処理
+    //void SetupLineRenderer()
+    //{
+    //    // 自身にLineRendererを追加
+    //    lineRenderer = gameObject.AddComponent<LineRenderer>();
+
+    //    // 線の頂点数（始点＋中間＋終点）
+    //    lineRenderer.positionCount = chainCount + 2;
+
+    //    // 線の始点側の幅
+    //    lineRenderer.startWidth = lineSize;
+
+    //    // 線の終点側の幅
+    //    lineRenderer.endWidth = lineSize;
+
+    //    // 簡易マテリアル（Sprite用）を設定
+    //    lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+
+    //    // 線の両端を滑らかに丸める
+    //    lineRenderer.numCapVertices = 5;
+    //}
+
     void SetupLineRenderer()
     {
-        // 自身にLineRendererを追加
+        // アウトライン用オブジェクトを作成
+        GameObject outlineObj = new GameObject("LineOutline");
+        outlineObj.transform.SetParent(this.transform, false);
+        outlineRenderer = outlineObj.AddComponent<LineRenderer>();
+
+        // 本体用 LineRenderer を追加
         lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer.sortingOrder = 10;
+        outlineRenderer.sortingOrder = 9;
 
-        // 線の頂点数（始点＋中間＋終点）
-        lineRenderer.positionCount = chainCount + 2;
+        // --- 共通設定 ---
+        SetupRendererCommon(lineRenderer, lineSize, Color.white);
+        SetupRendererCommon(outlineRenderer, lineSize + 0.05f, m_OutLineColor);
+    }
 
-        // 線の始点側の幅
-        lineRenderer.startWidth = lineSize;
-
-        // 線の終点側の幅
-        lineRenderer.endWidth = lineSize;
-
-        // 簡易マテリアル（Sprite用）を設定
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-
-        // 線の両端を滑らかに丸める
-        lineRenderer.numCapVertices = 5;
+    void SetupRendererCommon(LineRenderer lr, float width, Color color)
+    {
+        lr.positionCount = chainCount + 2;
+        lr.startWidth = width;
+        lr.endWidth = width;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.material.color = color;
+        lr.numCapVertices = 5;
     }
 
     // LineRendererを毎フレーム更新（各チェイン位置を反映）
@@ -164,14 +194,17 @@ public class RopeBuilder : MonoBehaviour
 
         // 始点位置をセット
         lineRenderer.SetPosition(0, startPoint.position);
+        outlineRenderer.SetPosition(0, startPoint.position);
 
         // 中間チェインの位置を順番にセット
         for (int i = 0; i < chainLinks.Count; i++)
         {
             lineRenderer.SetPosition(i + 1, chainLinks[i].position);
+            outlineRenderer.SetPosition(i + 1, chainLinks[i].position);
         }
 
         // 終点位置をセット
         lineRenderer.SetPosition(chainLinks.Count + 1, endPoint.position);
+        outlineRenderer.SetPosition(chainLinks.Count + 1, endPoint.position);
     }
 }
