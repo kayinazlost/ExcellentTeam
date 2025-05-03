@@ -40,10 +40,8 @@ public class RopeBuilder : MonoBehaviour
     [SerializeField]
     private float lineSize = 1.1f;
 
-    public Color m_StartColor = Color.white;
-
-    public Color m_EndColor = Color.white;
-
+    [SerializeField]
+    private Gradient m_color = new Gradient();
     public Color m_OutLineColor = Color.white;
 
     public GameManager manager;
@@ -183,7 +181,7 @@ public class RopeBuilder : MonoBehaviour
         float STL = (1.0f / manager.MaxTime) * manager.elapsedTime;
         if (STL > 1.0f) STL = 1.0f;
 
-        Color freshnessSet = Color.Lerp(m_StartColor, m_EndColor, STL);
+        Color freshnessSet = m_color.Evaluate(STL);
 
 
         lineRenderer.startColor = freshnessSet;
