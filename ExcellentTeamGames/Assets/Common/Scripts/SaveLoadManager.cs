@@ -154,11 +154,34 @@ namespace Mandegan
     {
         public static bool Save(SaveData data)
         {
+#if UNITY_WEBGL
+        // WebGLではファイル保存せず、メモリ保持
+        EnsureHolderExists();
+        WebGLSaveHolder.Instance.CachedSaveData = data;
+        Debug.Log("WebGL: データを一時保存しました");
+        return true;
+#else
             return DataSave(data);
-
+#endif
         }
+
         public static SaveData Load(string gameTitle)
         {
+#if UNITY_WEBGL
+        EnsureHolderExists();
+        var data = WebGLSaveHolder.Instance.CachedSaveData;
+        if (data == null)
+        {
+            data = new SaveData(gameTitle);
+            WebGLSaveHolder.Instance.CachedSaveData = data;
+            Debug.Log("WebGL: 新規データ作成");
+        }
+        else
+        {
+            Debug.Log("WebGL: データを読み込みました");
+        }
+        return data;
+#else
             // ゲームのセーブデータを読み込む
             SaveData saveData = LoadSaveData(gameTitle);
 
@@ -166,8 +189,18 @@ namespace Mandegan
             Debug.Log($"GameTitle: {saveData.GameTitle}, History: {saveData.scoreHistory}");
 
             return saveData;
+#endif
         }
 
+#if UNITY_WEBGL
+    private static void EnsureHolderExists()
+    {
+        if (WebGLSaveHolder.Instance == null)
+        {
+            new GameObject("WebGLSaveHolder").AddComponent<WebGLSaveHolder>();
+        }
+    }
+#endif
         private static bool DataSave(SaveData data)
         {
             if (data.GameTitle == "")
