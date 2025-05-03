@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerInputJump : MonoBehaviour
 {
     public List<string> m_Message;
-    public Text m_MessageText;
+    public TMPro.TextMeshProUGUI m_MessageText;
     public float m_TextTime = 0;
     [Header("ï®óù")]
     public Rigidbody m_Rigidbody;

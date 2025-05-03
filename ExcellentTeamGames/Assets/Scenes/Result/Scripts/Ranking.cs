@@ -7,6 +7,13 @@ public class Ranking : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI[] _texts;
 
+    private void Awake()
+    {
+#if UNITY_WEBGL
+        gameObject.SetActive(false);
+#endif
+    }
+
     private void Start()
     {
         var data = GameRecordManager.GetRanking();

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SetResult : MonoBehaviour
 {
-    public Text m_Text;
+    public TMPro.TextMeshProUGUI m_Text;
     void Start()
     {
         var data = GameRecordManager.GetHistory();
